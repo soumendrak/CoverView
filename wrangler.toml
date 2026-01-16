@@ -1,0 +1,7 @@
+name = "coverview"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "build"
+
+[vars]
+# Environment variables can be set here or in Cloudflare Dashboard
+# REACT_APP_API_ACCESS_KEY = "your_unsplash_key"
