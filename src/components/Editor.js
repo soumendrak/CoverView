@@ -9,8 +9,6 @@ import Header from "./Header";
 
 import { THEMES } from "../utils/constants";
 
-const defaultIcon = null
-
 const defaultSettings = {
 	title: "default title.",
 	bgColor: "#949ee5",
