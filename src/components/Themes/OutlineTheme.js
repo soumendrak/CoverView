@@ -17,10 +17,11 @@ const OutlineTheme = ({ config }) => {
                             <div className=" m-6">
                                 <img src={customIcon} alt="img" className="rounded-full object-cover w-24 h-24 bg-white p-1 border-white" />
                             </div>
-                            :
+                            : icon ?
                             <div className="  mr-auto ml-2 items-center justify-center flex">
                                 <i className={`devicon-${icon.value}-plain text-white p-4 dev-icon text-8xl`}></i>
                             </div>
+                            : null
                     }
                     <h1 className="text-3xl p-4 text-white md:text-5xl  font-bold ">{title}</h1>
 

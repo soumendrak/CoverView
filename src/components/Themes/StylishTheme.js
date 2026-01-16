@@ -26,10 +26,11 @@ const StylishTheme = ({ config }) => {
                                         <div className=" ">
                                             <img src={customIcon} alt="img" className="w-12 h-12 mr-2 rounded-full bg-white border border-white" />
                                         </div>
-                                        :
+                                        : icon ?
                                         <div className="mr-2 items-center justify-center flex">
                                             <i className={`devicon-${icon.value}-plain  dev-icon text-3xl`}></i>
                                         </div>
+                                        : null
                                 }
                                 <h2 className="text-xl  font-semibold text-left ">{author}</h2>
 

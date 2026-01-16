@@ -23,10 +23,11 @@ const BasicTheme = ({ config }) => {
                                 <div className="w-12 h-12  ">
                                     <img src={customIcon} alt="img" className="rounded-full bg-white p-1 border-white" />
                                 </div>
-                                :
+                                : icon ?
                                 <div className="mr-auto ml-2 items-center justify-center flex">
                                     <i className={`devicon-${icon.value}-plain  p-4 dev-icon text-5xl`}></i>
                                 </div>
+                                : null
                         }
 
 

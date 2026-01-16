@@ -9,16 +9,16 @@ import Header from "./Header";
 
 import { THEMES } from "../utils/constants";
 
-const defaultIcon = { 'label': 'react', 'value': 'react' }
+const defaultIcon = null
 
 const defaultSettings = {
-	title: "A beginners guide to frontend development",
+	title: "default title.",
 	bgColor: "#949ee5",
 	pattern: "",
 	download: "PNG",
-	author: 'Rutik Wankhade',
-	icon: defaultIcon,
-	devIconOptions: [defaultIcon],
+	author: 'Soumendra Kumar Sahoo',
+	icon: null,
+	devIconOptions: [],
 	font: 'font-Anek',
 	theme: 'background',
 	customIcon: '',
@@ -111,7 +111,7 @@ class Editor extends React.Component {
 											</div>
 											<div className="w-full">
 
-												{this.state.icon.label === 'upload your own' ?
+												{this.state.icon && this.state.icon.label === 'upload your own' ?
 													<div className="flex items-center justify-center w-64 mx-auto">
 														<input type="file"
 															className="focus:outline-none w-full text-sm cursor-pointer bg-white rounded border"

@@ -45,10 +45,11 @@ const BackgroundTheme = ({ config }) => {
                                                     <div className=" ">
                                                         <img src={customIcon} alt="img" className="w-12 h-12 m-2 rounded-full bg-white border-2 border-white" />
                                                     </div>
-                                                    :
+                                                    : icon ?
                                                     <div className="mr-2 items-center justify-center flex">
                                                         <i className={`devicon-${icon.value}-plain text-white dev-icon text-3xl`}></i>
                                                     </div>
+                                                    : null
                                             }
 
                                         </div>

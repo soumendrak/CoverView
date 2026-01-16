@@ -17,10 +17,11 @@ const ModernTheme = ({ config }) => {
                             <div className="  mx-auto items-center justify-center flex">
                                 <img src={customIcon} alt="img" className="w-28 h-28 rounded-full bg-white border-4 border-white" />
                             </div>
-                            :
+                            : icon ?
                             <div className=" rounded-full p-6 w-32 h-32 bg-white mx-auto items-center justify-center flex">
                                 <i className={`devicon-${icon.value}-plain  p-4 dev-icon text-7xl`}></i>
                             </div>
+                            : null
                     }
 
 
