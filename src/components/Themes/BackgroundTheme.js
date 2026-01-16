@@ -23,7 +23,7 @@ const BackgroundTheme = ({ config }) => {
                             <div className='relative flex group'>
 
                                 <div className="h-max w-full ">
-                                    <img src={unsplashImage.url && unsplashImage.url} className=" object-cover h-full w-full  " alt="preview" />
+                                    <img src={unsplashImage.url && unsplashImage.url} crossOrigin="anonymous" className=" object-cover h-full w-full  " alt="preview" />
                                 </div>
 
 
@@ -59,7 +59,7 @@ const BackgroundTheme = ({ config }) => {
                                     <div className=" group-hover:flex hidden items-center">
                                         <span className="text-sm text-white mx-2">Photo by</span>
                                         <a href={unsplashImage.profile} target="_blank" rel="noreferrer" className="cursor-pointer flex items-center bg-gray-300 rounded-full text-sm">
-                                            <img src={unsplashImage.avatar && unsplashImage.avatar} alt={unsplashImage.name} className="h-6 w-6 rounded-full mr-2" />
+                                            <img src={unsplashImage.avatar && unsplashImage.avatar} crossOrigin="anonymous" alt={unsplashImage.name} className="h-6 w-6 rounded-full mr-2" />
 
                                             <span className="pr-2">{unsplashImage.name}</span>
                                         </a>
