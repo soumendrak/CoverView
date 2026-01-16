@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import "./CoverImage.css";
 import { ImgContext } from "../utils/ImgContext";
 import unsplash from "../utils/unsplashConfig";
-import domtoimage from "dom-to-image";
+import { toPng } from "html-to-image";
 
 const ComponentToImg = (props) => {
 
@@ -35,7 +35,7 @@ const ComponentToImg = (props) => {
 		// console.log(element)
 		// console.log(element.offsetHeight)
 
-		let data = await domtoimage.toPng(componentRef.current, {
+		let data = await toPng(componentRef.current, {
 			height: element.offsetHeight * 2,
 			width: element.offsetWidth * 2,
 			style: {
@@ -43,7 +43,8 @@ const ComponentToImg = (props) => {
 				transformOrigin: "top left",
 				width: element.offsetWidth + "px",
 				height: element.offsetHeight + "px",
-			}
+			},
+			cacheBust: true
 		})
 
 		// console.log(data)
