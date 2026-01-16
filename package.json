@@ -21,8 +21,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build && cp _headers _redirects build/",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "pages:deploy": "npm run build && wrangler pages deploy build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
