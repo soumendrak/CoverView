@@ -21,7 +21,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build && cp _headers _redirects build/",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "echo 'Deploy handled by Cloudflare Pages'"
   },
   "eslintConfig": {
     "extends": "react-app"
