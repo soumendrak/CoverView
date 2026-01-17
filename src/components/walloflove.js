@@ -20,7 +20,7 @@ const WallOfLove = () => {
 
 
     return (
-        <div className='md:h-[800px] h-screen w-full'>
+        <div className='md:h-[700px] lg:h-[800px] h-screen w-full'>
             <iframe id="senja-frame-902012ea"
                 title="wall of love"
                 src=""
@@ -29,7 +29,7 @@ const WallOfLove = () => {
                 scrolling="no"
                 width="100%"
                 height="100%"
-                className="md:w-9/12  h-full py-4 px-6 mx-auto"
+                className="md:w-11/12 lg:w-9/12  h-full py-4 px-6 mx-auto"
             >
             </iframe>
 

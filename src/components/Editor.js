@@ -64,12 +64,12 @@ class Editor extends React.Component {
 				<Header />
 
 				<ImgProvider>
-					<div className="flex md:flex-row flex-col  ">
+					<div className="flex lg:flex-row flex-col  ">
 
-						<div className="bg-white flex flex-col h-100 md:w-3/12">
+						<div className="bg-white flex flex-col h-100 lg:w-3/12">
 
 							<div>
-								<div className="flex md:flex-row flex-col">
+								<div className="flex lg:flex-row flex-col">
 
 
 
@@ -238,8 +238,8 @@ class Editor extends React.Component {
 
 						{/* themes section */}
 
-						<div className="md:w-60 px-4 border-dashed border-l-2 border-gray-100 bg-white">
-							<div className="h-99 w-full flex flex-col justify-center">
+						<div className="lg:w-60 md:w-full px-4 lg:border-dashed lg:border-l-2 border-gray-100 bg-white">
+							<div className="lg:h-99 w-full flex flex-col justify-center">
 
 								<div className="flex items-center">
 									<h2 className="text-lg pl-2 font-inter font-semibold">Themes</h2>
