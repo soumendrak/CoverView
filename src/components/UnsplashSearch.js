@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import unsplash from '../utils/unsplashConfig';
 import { ImgContext } from '../utils/ImgContext';
 
 const UnsplashSearch = ({ largeImgPreview }) => {
 
     const [imageList, setImageList] = useState([]);
-    const { setUnsplashImage, searchQuery, setSearchQuery } = useContext(ImgContext);
+    const { setUnsplashImage, searchQuery, setSearchQuery, scrollPosition, setScrollPosition } = useContext(ImgContext);
+    const scrollContainerRef = useRef(null);
 
 
     const searchImages = (query) => {
@@ -27,6 +28,11 @@ const UnsplashSearch = ({ largeImgPreview }) => {
 
 
     const selectImage = (image) => {
+        // Save scroll position before selecting image
+        if (scrollContainerRef.current) {
+            setScrollPosition(scrollContainerRef.current.scrollTop);
+        }
+        
         setUnsplashImage({
             url: image.urls.regular,
             name: image.user.name,
@@ -41,6 +47,8 @@ const UnsplashSearch = ({ largeImgPreview }) => {
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
+        // Reset scroll position when searching for new images
+        setScrollPosition(0);
         searchImages(searchQuery);
 
     }
@@ -49,6 +57,18 @@ const UnsplashSearch = ({ largeImgPreview }) => {
         // Use the persisted searchQuery from context
         searchImages(searchQuery);
     }, [searchQuery])
+
+    // Restore scroll position after images are loaded
+    useEffect(() => {
+        if (scrollContainerRef.current && imageList.length > 0 && scrollPosition > 0) {
+            // Small delay to ensure images are rendered
+            setTimeout(() => {
+                if (scrollContainerRef.current) {
+                    scrollContainerRef.current.scrollTop = scrollPosition;
+                }
+            }, 100);
+        }
+    }, [imageList, scrollPosition])
 
     return (
         <div className='w-full h-full'>
@@ -71,7 +91,10 @@ const UnsplashSearch = ({ largeImgPreview }) => {
                 </div>
 
 
-                <div className="overflow-y-scroll w-full pb-12 overflow-x-hidden h-max justify-center flex flex-wrap">
+                <div 
+                    ref={scrollContainerRef}
+                    className="overflow-y-scroll w-full pb-12 overflow-x-hidden h-max justify-center flex flex-wrap"
+                >
                     {
                         imageList.map(image => {
                             return <div key={image.id}
