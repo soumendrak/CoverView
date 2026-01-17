@@ -4,13 +4,18 @@ import { ImgContext } from '../utils/ImgContext';
 
 const UnsplashSearch = ({ largeImgPreview }) => {
 
-    const [imageList, setImageList] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
-    const { setUnsplashImage, searchQuery, setSearchQuery, scrollPosition, setScrollPosition } = useContext(ImgContext);
+    const { 
+        setUnsplashImage, 
+        searchQuery, setSearchQuery, 
+        scrollPosition, setScrollPosition,
+        cachedImages, setCachedImages,
+        cachedPage, setCachedPage,
+        cachedTotalPages, setCachedTotalPages
+    } = useContext(ImgContext);
     const scrollContainerRef = useRef(null);
     const shouldRestoreScroll = useRef(scrollPosition > 0);
+    const lastSearchQuery = useRef(searchQuery);
 
     const IMAGES_PER_PAGE = 30;
 
@@ -31,11 +36,12 @@ const UnsplashSearch = ({ largeImgPreview }) => {
                 const total = response.response.total_pages;
                 
                 if (append) {
-                    setImageList(prev => [...prev, ...results]);
+                    setCachedImages(prev => [...prev, ...results]);
                 } else {
-                    setImageList(results);
+                    setCachedImages(results);
                 }
-                setTotalPages(total);
+                setCachedTotalPages(total);
+                setCachedPage(page);
                 setIsLoading(false);
             })
             .catch(() => {
@@ -44,8 +50,7 @@ const UnsplashSearch = ({ largeImgPreview }) => {
     }
 
     const loadMoreImages = () => {
-        const nextPage = currentPage + 1;
-        setCurrentPage(nextPage);
+        const nextPage = cachedPage + 1;
         searchImages(searchQuery, nextPage, true);
     }
 
@@ -72,16 +77,18 @@ const UnsplashSearch = ({ largeImgPreview }) => {
         e.preventDefault();
         // Reset scroll position and page when searching for new images
         setScrollPosition(0);
-        setCurrentPage(1);
         searchImages(searchQuery, 1, false);
 
     }
 
     useEffect(() => {
-        // Use the persisted searchQuery from context
-        setCurrentPage(1);
-        searchImages(searchQuery, 1, false);
-    }, [searchQuery])
+        // Only fetch if search query changed or we have no cached images
+        if (lastSearchQuery.current !== searchQuery || cachedImages.length === 0) {
+            lastSearchQuery.current = searchQuery;
+            searchImages(searchQuery, 1, false);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []) // Only run on mount
 
     // Restore scroll position synchronously before paint using useLayoutEffect
     useLayoutEffect(() => {
@@ -89,7 +96,7 @@ const UnsplashSearch = ({ largeImgPreview }) => {
             scrollContainerRef.current.scrollTop = scrollPosition;
             shouldRestoreScroll.current = false;
         }
-    }, [imageList, scrollPosition])
+    }, [cachedImages, scrollPosition])
 
     return (
         <div className='w-full h-full'>
@@ -117,7 +124,7 @@ const UnsplashSearch = ({ largeImgPreview }) => {
                     className="overflow-y-scroll w-full pb-12 overflow-x-hidden h-max justify-center flex flex-wrap"
                 >
                     {
-                        imageList.map(image => {
+                        cachedImages.map(image => {
                             return <div key={image.id}
                                 className={`rounded-lg relative cursor-pointer m-1 ${largeImgPreview ? ' h-44 w-60' : 'h-24 w-40'
                                     }`}
@@ -134,7 +141,7 @@ const UnsplashSearch = ({ largeImgPreview }) => {
                     }
                     
                     {/* Load More Button */}
-                    {imageList.length > 0 && currentPage < totalPages && (
+                    {cachedImages.length > 0 && cachedPage < cachedTotalPages && (
                         <div className="w-full flex justify-center py-4">
                             <button
                                 onClick={loadMoreImages}
@@ -147,7 +154,7 @@ const UnsplashSearch = ({ largeImgPreview }) => {
                     )}
                     
                     {/* Loading indicator for initial load */}
-                    {isLoading && imageList.length === 0 && (
+                    {isLoading && cachedImages.length === 0 && (
                         <div className="w-full flex justify-center py-8">
                             <span className="text-gray-500">Loading images...</span>
                         </div>
