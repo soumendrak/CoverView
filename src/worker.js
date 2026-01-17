@@ -1,25 +1,18 @@
-import { getAssetFromKV } from '@cloudflare/kv-asset-handler';
-
-addEventListener('fetch', (event) => {
-  event.respondWith(handleRequest(event));
-});
-
-async function handleRequest(event) {
-  try {
-    // Try to serve the static asset
-    return await getAssetFromKV(event);
-  } catch (e) {
-    // If asset not found, serve index.html for SPA routing
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    
+    // Try to get the asset from the static assets binding
     try {
-      let notFoundResponse = await getAssetFromKV(event, {
-        mapRequestToAsset: (req) => new Request(`${new URL(req.url).origin}/index.html`, req),
-      });
-      return new Response(notFoundResponse.body, {
-        ...notFoundResponse,
-        status: 200,
-      });
+      const response = await env.ASSETS.fetch(request);
+      if (response.status !== 404) {
+        return response;
+      }
     } catch (e) {
-      return new Response('Not Found', { status: 404 });
+      // Asset not found, fall through to serve index.html
     }
+    
+    // For SPA routing, serve index.html for any path
+    return env.ASSETS.fetch(new Request(new URL('/index.html', url.origin), request));
   }
-}
+};
