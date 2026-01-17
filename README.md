@@ -29,6 +29,28 @@ Creating cover images for your blogs is now super easy.
 - 🌠 100+ dev icons with option to upload custom icon
 - 💾 Cover size based on blogging platform (i.e hashnode and dev)
 
+## ✨ Advanced Features (New in Advanced CoverView)
+
+### 🎨 Enhanced Customization
+- **Platform Presets** - Pre-configured dimensions for Hashnode, Dev.to, Medium, LinkedIn, Twitter, Facebook, YouTube, and Custom sizes
+- **Pattern Backgrounds** - 16 SVG pattern options (graph-paper, jigsaw, dots, circuit-board, and more)
+- **Color Preset Swatches** - Quick color selection with collapsible palette
+
+### 📱 Improved Responsiveness
+- **Tablet/iPad Support** - Optimized layout for tablet devices
+- **Responsive Sidebar** - Better form controls on medium-sized screens
+
+### 🖼️ Enhanced Unsplash Integration
+- **Pagination Support** - "Load More Images" button to browse beyond initial 30 results
+- **Search Query Persistence** - Search term preserved when selecting/deselecting images
+- **Scroll Position Memory** - Returns to exact scroll position after closing selected image
+- **State Caching** - All loaded images cached to avoid re-fetching
+
+### 🐛 Bug Fixes & UX Improvements
+- Fixed dropdown overflow issues in sidebar
+- Smooth scroll restoration without visual flicker
+- Reset scroll to top on new search
+
 ## 👩‍💻 Developing
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
