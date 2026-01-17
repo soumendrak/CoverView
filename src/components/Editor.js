@@ -10,11 +10,11 @@ import Header from "./Header";
 import { THEMES, PLATFORMS } from "../utils/constants";
 
 const defaultSettings = {
-	title: "default title.",
+	title: "Your Title Goes Here",
 	bgColor: "#949ee5",
 	pattern: "",
 	download: "PNG",
-	author: 'Soumendra Kumar Sahoo',
+	author: 'Your Name Here',
 	icon: null,
 	devIconOptions: [],
 	font: 'font-Anek',
