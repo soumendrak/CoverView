@@ -41,7 +41,7 @@ const CoverImage = (props) => {
 
 
 	return (
-		<div className={`border-2  border-gray-50 lg:scale-100 md:scale-75 scale-50 ${props.platform}`}>
+		<div className={`border-2  border-gray-50 lg:scale-100 md:scale-[0.55] scale-50 ${props.platform}`}>
 			{selectTheme(theme)}
 		</div>
 	);

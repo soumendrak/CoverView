@@ -64,16 +64,16 @@ class Editor extends React.Component {
 				<Header />
 
 				<ImgProvider>
-					<div className="flex lg:flex-row flex-col  ">
+					<div className="flex md:flex-row flex-col  ">
 
-						<div className="bg-white flex flex-col h-100 lg:w-3/12">
+						<div className="bg-white flex flex-col md:h-auto lg:h-100 md:w-4/12 lg:w-3/12">
 
 							<div>
-								<div className="flex lg:flex-row flex-col">
+								<div className="flex md:flex-row flex-col">
 
 
 
-									<div className="bg-white font-Inter  border-dashed border-r-2 border-gray-100 w-full p-4 ">
+									<div className="bg-white font-Inter  border-dashed md:border-r-2 border-gray-100 w-full p-4 ">
 										<div>
 
 											<div className="m-2 flex flex-col">
@@ -229,7 +229,7 @@ class Editor extends React.Component {
 
 						{/* cover image preview */}
 
-						<div className=" flex m-2 flex-col items-center justify-center ">
+						<div className=" flex m-2 flex-col items-center justify-center md:flex-1">
 
 							<ComponentToImg downloadAs={this.state.download}>
 								<CoverImage {...this.state} />
@@ -238,8 +238,8 @@ class Editor extends React.Component {
 
 						{/* themes section */}
 
-						<div className="lg:w-60 md:w-full px-4 lg:border-dashed lg:border-l-2 border-gray-100 bg-white">
-							<div className="lg:h-99 w-full flex flex-col justify-center">
+						<div className="md:w-48 lg:w-60 px-4 md:border-dashed md:border-l-2 border-gray-100 bg-white">
+							<div className="md:h-auto lg:h-99 w-full flex flex-col justify-center">
 
 								<div className="flex items-center">
 									<h2 className="text-lg pl-2 font-inter font-semibold">Themes</h2>
