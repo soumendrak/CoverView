@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useContext, useRef } from 'react';
 import unsplash from '../utils/unsplashConfig';
 import { ImgContext } from '../utils/ImgContext';
 
@@ -7,6 +7,7 @@ const UnsplashSearch = ({ largeImgPreview }) => {
     const [imageList, setImageList] = useState([]);
     const { setUnsplashImage, searchQuery, setSearchQuery, scrollPosition, setScrollPosition } = useContext(ImgContext);
     const scrollContainerRef = useRef(null);
+    const shouldRestoreScroll = useRef(scrollPosition > 0);
 
 
     const searchImages = (query) => {
@@ -58,15 +59,11 @@ const UnsplashSearch = ({ largeImgPreview }) => {
         searchImages(searchQuery);
     }, [searchQuery])
 
-    // Restore scroll position after images are loaded
-    useEffect(() => {
-        if (scrollContainerRef.current && imageList.length > 0 && scrollPosition > 0) {
-            // Small delay to ensure images are rendered
-            setTimeout(() => {
-                if (scrollContainerRef.current) {
-                    scrollContainerRef.current.scrollTop = scrollPosition;
-                }
-            }, 100);
+    // Restore scroll position synchronously before paint using useLayoutEffect
+    useLayoutEffect(() => {
+        if (scrollContainerRef.current && shouldRestoreScroll.current && scrollPosition > 0) {
+            scrollContainerRef.current.scrollTop = scrollPosition;
+            shouldRestoreScroll.current = false;
         }
     }, [imageList, scrollPosition])
 
