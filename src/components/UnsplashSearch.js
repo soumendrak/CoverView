@@ -77,6 +77,10 @@ const UnsplashSearch = ({ largeImgPreview }) => {
         e.preventDefault();
         // Reset scroll position and page when searching for new images
         setScrollPosition(0);
+        // Scroll to top immediately
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.scrollTop = 0;
+        }
         searchImages(searchQuery, 1, false);
 
     }
