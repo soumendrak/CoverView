@@ -27,7 +27,7 @@ const Home = () => {
                 <div className="text-xl  flex   p-2 md:w-11/12 lg:w-10/12 mx-auto">
                     <div className="flex items-center">
                         <img src={logo} alt="logo" className="w-8 h-8 mx-2" />
-                        <h1 className="font-semibold md:text-xl text-lg font-Inter">Coverview</h1>
+                        <h1 className="font-semibold md:text-xl text-lg font-Inter">Advanced CoverView</h1>
                     </div>
 
                     <a href="https://github.com/rutikwankhade/CoverView" target="_blank" rel="noreferrer" className="hover:translate-x-2 flex items-center justify-center duration-300 bg-gray-700 group rounded-xl   text-white  ml-auto mr-4 font-Inter font-semibold ">
@@ -110,7 +110,7 @@ const Home = () => {
                 </div>
 
 
-                <h2 className="md:text-4xl lg:text-5xl text-3xl md:w-9/12 lg:w-7/12 md:mx-auto mt-12 md:mt-20 lg:mt-32 mx-10 font-bold font-Anek text-center text-gray-700">With coverview, you can create cover images in <span className="text-indigo-400">seconds</span></h2>
+                <h2 className="md:text-4xl lg:text-5xl text-3xl md:w-9/12 lg:w-7/12 md:mx-auto mt-12 md:mt-20 lg:mt-32 mx-10 font-bold font-Anek text-center text-gray-700">With Advanced CoverView, you can create cover images in <span className="text-indigo-400">seconds</span></h2>
 
 
                 <div className="md:w-10/12 lg:w-8/12 md:my-10 lg:my-16 p-4 flex lg:flex-row flex-col gap-4 mx-auto">
