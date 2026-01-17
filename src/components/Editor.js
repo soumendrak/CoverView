@@ -181,13 +181,13 @@ class Editor extends React.Component {
 
 
 											<div className="flex items-center">
-												<div className="flex flex-col m-2 w-1/2">
+												<div className="flex flex-col m-2 flex-1 min-w-0">
 													<span className="font-medium text-sm pb-1">Platform</span>
 
 													<select
 														onChange={(e) => this.setState({ platform: e.target.value })}
 														value={this.state.platform}
-														className="focus:outline-none text-gray-700 text-base p-2 rounded border">
+														className="focus:outline-none text-gray-700 text-sm p-2 rounded border w-full truncate">
 														{PLATFORMS.map((p) => (
 															<option key={p.name} value={p.name}>
 																{p.label} ({p.width}×{p.height})
@@ -196,11 +196,11 @@ class Editor extends React.Component {
 													</select>
 												</div>
 
-												<div className="flex flex-col m-2 w-1/2">
+												<div className="flex flex-col m-2 flex-1 min-w-0">
 													<span className="font-medium text-sm pb-1">Pattern</span>
 													<select
 														onChange={(e) => this.setState({ pattern: e.target.value })}
-														className="focus:outline-none border text-gray-700 text-base p-2 rounded"
+														className="focus:outline-none border text-gray-700 text-sm p-2 rounded w-full"
 														value={this.state.pattern}>
 														<option value="">none</option>
 														<option value="graph-paper">graph-paper</option>
