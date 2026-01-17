@@ -5,15 +5,14 @@ import { ImgContext } from '../utils/ImgContext';
 const UnsplashSearch = ({ largeImgPreview }) => {
 
     const [imageList, setImageList] = useState([]);
-    const [searchText, setSearchText] = useState('setup');
-    const { setUnsplashImage } = useContext(ImgContext);
+    const { setUnsplashImage, searchQuery, setSearchQuery } = useContext(ImgContext);
 
 
-    const searchImages = () => {
+    const searchImages = (query) => {
 
         unsplash.search
             .getPhotos({
-                query: searchText,
+                query: query,
                 page: 1,
                 per_page: 30,
                 // orientation:'portrait'
@@ -42,24 +41,14 @@ const UnsplashSearch = ({ largeImgPreview }) => {
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-        searchImages(searchText);
+        searchImages(searchQuery);
 
     }
 
     useEffect(() => {
-
-        unsplash.search
-            .getPhotos({
-                query: 'setup',
-                page: 1,
-                per_page: 30
-
-            })
-            .then(response => {
-                // console.log(response.response.results);
-                setImageList(response.response.results)
-            });
-    }, [])
+        // Use the persisted searchQuery from context
+        searchImages(searchQuery);
+    }, [searchQuery])
 
     return (
         <div className='w-full h-full'>
@@ -68,13 +57,13 @@ const UnsplashSearch = ({ largeImgPreview }) => {
                 <div className="flex items-center w-full px-6 ">
                     <form onSubmit={(e) => handleSearchSubmit(e)} className=" mx-auto w-full flex bg-gray-50 rounded-full border border-gray-50 mb-2">
                         <input type="text"
-                            value={searchText}
+                            value={searchQuery}
                             placeholder="Search photos"
                             className="focus:outline-none w-full text-lg bg-gray-50  p-1 px-4  rounded-full  "
-                            onChange={(e) => setSearchText(e.target.value)}
+                            onChange={(e) => setSearchQuery(e.target.value)}
                         />
 
-                        <button type="submit" onClick={() => searchImages(searchText)}>
+                        <button type="submit" onClick={() => searchImages(searchQuery)}>
                             <svg className="w-9 h-9 ml-auto  p-2 bg-gray-700 hover:bg-gray-800 text-white rounded-full" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                         </button>
                     </form>
