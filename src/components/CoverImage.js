@@ -23,7 +23,7 @@ const CoverImage = (props) => {
 	// 	throw new Error("Bad Hex");
 	// }
 
-	const { theme } = props;
+	const { theme, platform, customWidth, customHeight } = props;
 
 	const selectTheme = (theme) => {
 		switch (theme) {
@@ -39,9 +39,31 @@ const CoverImage = (props) => {
 		}
 	}
 
+	// Get dimensions based on platform
+	const getDimensions = () => {
+		if (platform === 'custom') {
+			// Scale down for preview (similar ratio as other platforms)
+			const scaleFactor = 0.625; // roughly matches hashnode's 800/1600 ratio
+			return {
+				width: Math.round((customWidth || 1200) * scaleFactor),
+				height: Math.round((customHeight || 630) * scaleFactor)
+			};
+		}
+		return null; // Use CSS class dimensions
+	};
+
+	const customDimensions = getDimensions();
+	const customStyle = customDimensions ? {
+		width: `${customDimensions.width}px`,
+		height: `${customDimensions.height}px`
+	} : {};
+
 
 	return (
-		<div className={`border-2  border-gray-50 lg:scale-100 md:scale-[0.55] scale-50 ${props.platform}`}>
+		<div 
+			className={`border-2 border-gray-50 lg:scale-100 md:scale-[0.55] scale-50 ${platform}`}
+			style={customStyle}
+		>
 			{selectTheme(theme)}
 		</div>
 	);

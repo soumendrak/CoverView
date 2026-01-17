@@ -6,5 +6,59 @@
 .hashnode {
     height: 420px;
     width: 800px;
+}
 
+.linkedin-post {
+    height: 392px;
+    width: 750px;
+}
+
+.linkedin-article {
+    height: 405px;
+    width: 720px;
+}
+
+.twitter {
+    height: 394px;
+    width: 700px;
+}
+
+.facebook {
+    height: 394px;
+    width: 750px;
+}
+
+.medium {
+    height: 400px;
+    width: 800px;
+}
+
+.wordpress {
+    height: 392px;
+    width: 750px;
+}
+
+.tumblr {
+    height: 405px;
+    width: 720px;
+}
+
+.youtube {
+    height: 405px;
+    width: 720px;
+}
+
+.instagram {
+    height: 540px;
+    width: 540px;
+}
+
+.pinterest {
+    height: 750px;
+    width: 500px;
+}
+
+.custom {
+    height: 394px;
+    width: 750px;
 }

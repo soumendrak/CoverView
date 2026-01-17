@@ -7,7 +7,7 @@ import { ImgProvider } from '../utils/ImgContext'
 import Header from "./Header";
 
 
-import { THEMES } from "../utils/constants";
+import { THEMES, PLATFORMS } from "../utils/constants";
 
 const defaultSettings = {
 	title: "default title.",
@@ -20,13 +20,14 @@ const defaultSettings = {
 	font: 'font-Anek',
 	theme: 'background',
 	customIcon: '',
-	platform: 'hashnode'
+	platform: 'hashnode',
+	customWidth: 1200,
+	customHeight: 630
 };
 
 const devIconsUrl = "https://raw.githubusercontent.com/devicons/devicon/master/devicon.json"
 
 class Editor extends React.Component {
-
 
 	state = defaultSettings;
 	componentDidMount() {
@@ -190,10 +191,40 @@ class Editor extends React.Component {
 													<select
 														onChange={(e) => this.setState({ platform: e.target.value })}
 														value={this.state.platform}
-														className="focus:outline-none text-gray-700 text-lg p-2 rounded border">
-														<option>hashnode</option>
-														<option>dev</option>
+														className="focus:outline-none text-gray-700 text-base p-2 rounded border">
+														{PLATFORMS.map((p) => (
+															<option key={p.name} value={p.name}>
+																{p.label} ({p.width}×{p.height})
+															</option>
+														))}
 													</select>
+													
+													{this.state.platform === 'custom' && (
+														<div className="flex gap-2 mt-2">
+															<div className="flex flex-col flex-1">
+																<span className="text-xs text-gray-500">Width</span>
+																<input
+																	type="number"
+																	value={this.state.customWidth}
+																	onChange={(e) => this.setState({ customWidth: parseInt(e.target.value) || 1200 })}
+																	className="focus:outline-none border text-gray-700 text-sm rounded p-1 w-full"
+																	min="100"
+																	max="4000"
+																/>
+															</div>
+															<div className="flex flex-col flex-1">
+																<span className="text-xs text-gray-500">Height</span>
+																<input
+																	type="number"
+																	value={this.state.customHeight}
+																	onChange={(e) => this.setState({ customHeight: parseInt(e.target.value) || 630 })}
+																	className="focus:outline-none border text-gray-700 text-sm rounded p-1 w-full"
+																	min="100"
+																	max="4000"
+																/>
+															</div>
+														</div>
+													)}
 												</div>
 
 											</div>
