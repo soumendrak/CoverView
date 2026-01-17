@@ -36,10 +36,6 @@ Creating cover images for your blogs is now super easy.
 - **Pattern Backgrounds** - 16 SVG pattern options (graph-paper, jigsaw, dots, circuit-board, and more)
 - **Color Preset Swatches** - Quick color selection with collapsible palette
 
-### 📱 Improved Responsiveness
-- **Tablet/iPad Support** - Optimized layout for tablet devices
-- **Responsive Sidebar** - Better form controls on medium-sized screens
-
 ### 🖼️ Enhanced Unsplash Integration
 - **Pagination Support** - "Load More Images" button to browse beyond initial 30 results
 - **Search Query Persistence** - Search term preserved when selecting/deselecting images
