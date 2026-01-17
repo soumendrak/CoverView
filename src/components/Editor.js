@@ -143,15 +143,31 @@ class Editor extends React.Component {
 												<div className="flex flex-col m-2 w-1/2">
 													<span className="font-medium text-sm pb-1">Color</span>
 													<div className="border rounded flex items-center p-1">
-
-														{/* <span className="text-base text-gray-700  mx-2">{this.state.bgColor}</span> */}
 														<input type="color" value={this.state.bgColor}
 															onChange={(e) => this.setState({ bgColor: e.target.value })}
-															className="h-8 w-full  rounded"
+															className="h-8 w-10 rounded cursor-pointer"
 														/>
 													</div>
 												</div>
 
+											</div>
+
+											{/* Color Presets */}
+											<div className="flex flex-wrap gap-1 m-2">
+												{[
+													'#949ee5', '#e57373', '#81c784', '#64b5f6', '#ffb74d', 
+													'#ba68c8', '#4db6ac', '#ff8a65', '#a1887f', '#90a4ae',
+													'#f06292', '#7986cb', '#4fc3f7', '#aed581', '#fff176',
+													'#ff5722', '#607d8b', '#9c27b0', '#00bcd4', '#8bc34a'
+												].map((color) => (
+													<button
+														key={color}
+														onClick={() => this.setState({ bgColor: color })}
+														className={`w-6 h-6 rounded cursor-pointer border-2 hover:scale-110 transition-transform ${this.state.bgColor === color ? 'border-gray-800 ring-1 ring-offset-1 ring-gray-400' : 'border-gray-200'}`}
+														style={{ backgroundColor: color }}
+														title={color}
+													/>
+												))}
 											</div>
 
 
