@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import logo from '../assets/icons/logo.png'
 const Header = () => {
 
-	const tweetText = encodeURIComponent(`type your thoughts here, Try https://coverview.vercel.app by @rutikdotdev`)
+	const tweetText = encodeURIComponent(`Check out Advanced CoverView - Create beautiful cover images for your blogs in seconds! Try it at https://cover.soumendrak.com by @soaboruen`)
 
 	return (
 
