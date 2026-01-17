@@ -5,26 +5,48 @@ import { ImgContext } from '../utils/ImgContext';
 const UnsplashSearch = ({ largeImgPreview }) => {
 
     const [imageList, setImageList] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [isLoading, setIsLoading] = useState(false);
     const { setUnsplashImage, searchQuery, setSearchQuery, scrollPosition, setScrollPosition } = useContext(ImgContext);
     const scrollContainerRef = useRef(null);
     const shouldRestoreScroll = useRef(scrollPosition > 0);
 
+    const IMAGES_PER_PAGE = 30;
 
-    const searchImages = (query) => {
-
+    const searchImages = (query, page = 1, append = false) => {
+        setIsLoading(true);
         unsplash.search
             .getPhotos({
                 query: query,
-                page: 1,
-                per_page: 30,
+                page: page,
+                per_page: IMAGES_PER_PAGE,
                 // orientation:'portrait'
 
 
             })
             .then(response => {
                 // console.log(response.response.results);
-                setImageList(response.response.results)
+                const results = response.response.results;
+                const total = response.response.total_pages;
+                
+                if (append) {
+                    setImageList(prev => [...prev, ...results]);
+                } else {
+                    setImageList(results);
+                }
+                setTotalPages(total);
+                setIsLoading(false);
+            })
+            .catch(() => {
+                setIsLoading(false);
             });
+    }
+
+    const loadMoreImages = () => {
+        const nextPage = currentPage + 1;
+        setCurrentPage(nextPage);
+        searchImages(searchQuery, nextPage, true);
     }
 
 
@@ -48,15 +70,17 @@ const UnsplashSearch = ({ largeImgPreview }) => {
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-        // Reset scroll position when searching for new images
+        // Reset scroll position and page when searching for new images
         setScrollPosition(0);
-        searchImages(searchQuery);
+        setCurrentPage(1);
+        searchImages(searchQuery, 1, false);
 
     }
 
     useEffect(() => {
         // Use the persisted searchQuery from context
-        searchImages(searchQuery);
+        setCurrentPage(1);
+        searchImages(searchQuery, 1, false);
     }, [searchQuery])
 
     // Restore scroll position synchronously before paint using useLayoutEffect
@@ -108,6 +132,26 @@ const UnsplashSearch = ({ largeImgPreview }) => {
                             </div>
                         })
                     }
+                    
+                    {/* Load More Button */}
+                    {imageList.length > 0 && currentPage < totalPages && (
+                        <div className="w-full flex justify-center py-4">
+                            <button
+                                onClick={loadMoreImages}
+                                disabled={isLoading}
+                                className="bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-6 rounded-full transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {isLoading ? 'Loading...' : 'Load More Images'}
+                            </button>
+                        </div>
+                    )}
+                    
+                    {/* Loading indicator for initial load */}
+                    {isLoading && imageList.length === 0 && (
+                        <div className="w-full flex justify-center py-8">
+                            <span className="text-gray-500">Loading images...</span>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
