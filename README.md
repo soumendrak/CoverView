@@ -1,10 +1,10 @@
 
 
-## Coverview
+## Advanced CoverView
 Creating cover images for your blogs is now super easy.
 <p>
-<a href="https://github.com/rutikwankhade/CoverView"><img src="https://img.shields.io/github/stars/rutikwankhade/CoverView.svg?style=social&label=Star"></a>
-<a href="https://github.com/rutikwankhade/CoverView"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103"></a>
+<a href="https://github.com/soumendrak/Advanced-CoverView"><img src="https://img.shields.io/github/stars/soumendrak/Advanced-CoverView.svg?style=social&label=Star"></a>
+<a href="https://github.com/soumendrak/Advanced-CoverView"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103"></a>
 <a href="https://lbesson.mit-license.org"><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
 
 
@@ -35,8 +35,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 ```shell
-git clone https://github.com/rutikwankhade/CoverView.git
-cd CoverView/
+git clone https://github.com/soumendrak/Advanced-CoverView.git
+cd Advanced-CoverView/
 npm start
 ```
 
@@ -45,7 +45,7 @@ npm start
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 
-1. Fork it (<https://github.com/rutikwankhade/CoverView/fork>)
+1. Fork it (<https://github.com/soumendrak/Advanced-CoverView/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)

@@ -30,7 +30,7 @@ const Home = () => {
                         <h1 className="font-semibold md:text-xl text-lg font-Inter">Advanced CoverView</h1>
                     </div>
 
-                    <a href="https://github.com/rutikwankhade/CoverView" target="_blank" rel="noreferrer" className="hover:translate-x-2 flex items-center justify-center duration-300 bg-gray-700 group rounded-xl   text-white  ml-auto mr-4 font-Inter font-semibold ">
+                    <a href="https://github.com/soumendrak/Advanced-CoverView" target="_blank" rel="noreferrer" className="hover:translate-x-2 flex items-center justify-center duration-300 bg-gray-700 group rounded-xl   text-white  ml-auto mr-4 font-Inter font-semibold ">
                         <span className="md:text-sm text-xs px-2 md:px-4 py-1 md:py-2">⭐ Star on Github</span>
                     </a>
                 </div>
@@ -202,7 +202,7 @@ const Home = () => {
 
                         <div className="md:text-lg text-sm flex flex-wrap gap-4 ">
                             <Link to="/faq" className="hover:underline">How to use</Link>
-                            <a href="https://github.com/rutikwankhade/CoverView" target="_blank" rel="noreferrer" className="hover:underline">Github</a>
+                            <a href="https://github.com/soumendrak/Advanced-CoverView" target="_blank" rel="noreferrer" className="hover:underline">Github</a>
                             <a href="https://www.buymeacoffee.com/rutikwankhade" target="_blank" rel="noreferrer" className="hover:underline">Buy me a coffee</a>
                         </div>
 
