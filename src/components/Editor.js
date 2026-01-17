@@ -182,6 +182,21 @@ class Editor extends React.Component {
 
 											<div className="flex items-center">
 												<div className="flex flex-col m-2 w-1/2">
+													<span className="font-medium text-sm pb-1">Platform</span>
+
+													<select
+														onChange={(e) => this.setState({ platform: e.target.value })}
+														value={this.state.platform}
+														className="focus:outline-none text-gray-700 text-base p-2 rounded border">
+														{PLATFORMS.map((p) => (
+															<option key={p.name} value={p.name}>
+																{p.label} ({p.width}×{p.height})
+															</option>
+														))}
+													</select>
+												</div>
+
+												<div className="flex flex-col m-2 w-1/2">
 													<span className="font-medium text-sm pb-1">Pattern</span>
 													<select
 														onChange={(e) => this.setState({ pattern: e.target.value })}
@@ -203,21 +218,6 @@ class Editor extends React.Component {
 														<option value="leaf">leaf</option>
 														<option value="bubbles">bubbles</option>
 														<option value="squares">squares</option>
-													</select>
-												</div>
-
-												<div className="flex flex-col m-2 w-1/2">
-													<span className="font-medium text-sm pb-1">Platform</span>
-
-													<select
-														onChange={(e) => this.setState({ platform: e.target.value })}
-														value={this.state.platform}
-														className="focus:outline-none text-gray-700 text-base p-2 rounded border">
-														{PLATFORMS.map((p) => (
-															<option key={p.name} value={p.name}>
-																{p.label} ({p.width}×{p.height})
-															</option>
-														))}
 													</select>
 												</div>
 
