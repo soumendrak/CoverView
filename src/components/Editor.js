@@ -260,7 +260,7 @@ class Editor extends React.Component {
 
 						{/* cover image preview */}
 
-						<div className=" flex m-2 flex-col items-center justify-center md:flex-1">
+						<div className=" flex m-2 flex-col items-center justify-start md:flex-1 pt-4">
 
 							<ComponentToImg downloadAs={this.state.download}>
 								<CoverImage {...this.state} />
@@ -270,7 +270,7 @@ class Editor extends React.Component {
 						{/* themes section */}
 
 						<div className="md:w-48 lg:w-60 px-4 md:border-dashed md:border-l-2 border-gray-100 bg-white">
-							<div className="md:h-auto lg:h-99 w-full flex flex-col justify-center">
+							<div className="h-99 w-full flex flex-col">
 
 								<div className="flex items-center">
 									<h2 className="text-lg pl-2 font-inter font-semibold">Themes</h2>
@@ -280,7 +280,7 @@ class Editor extends React.Component {
 									</div>
 								</div>
 
-								<div className="  flex gap-2 flex-wrap justify-center overflow-y-scroll ">
+								<div className="flex-1 flex gap-2 flex-wrap justify-center overflow-y-auto">
 
 									{
 										THEMES.map(themePlaceholder => (
