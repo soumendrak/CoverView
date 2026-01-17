@@ -22,7 +22,8 @@ const defaultSettings = {
 	customIcon: '',
 	platform: 'hashnode',
 	customWidth: 1200,
-	customHeight: 630
+	customHeight: 630,
+	showColorSwatches: false
 };
 
 const devIconsUrl = "https://raw.githubusercontent.com/devicons/devicon/master/devicon.json"
@@ -142,66 +143,70 @@ class Editor extends React.Component {
 												</div>
 												<div className="flex flex-col m-2 w-1/2">
 													<span className="font-medium text-sm pb-1">Color</span>
-													<div className="border rounded flex items-center p-1">
+													<div 
+														className="border rounded flex items-center p-1 cursor-pointer hover:border-gray-400"
+														onClick={() => this.setState({ showColorSwatches: !this.state.showColorSwatches })}
+														title="Click to toggle color presets"
+													>
 														<input type="color" value={this.state.bgColor}
 															onChange={(e) => this.setState({ bgColor: e.target.value })}
+															onClick={(e) => e.stopPropagation()}
 															className="h-8 w-10 rounded cursor-pointer"
 														/>
+														<span className="ml-2 text-xs text-gray-500">{this.state.showColorSwatches ? '▲' : '▼'}</span>
 													</div>
 												</div>
 
 											</div>
 
-											{/* Color Presets */}
-											<div className="flex flex-wrap gap-1 m-2">
-												{[
-													'#949ee5', '#e57373', '#81c784', '#64b5f6', '#ffb74d', 
-													'#ba68c8', '#4db6ac', '#ff8a65', '#a1887f', '#90a4ae',
-													'#f06292', '#7986cb', '#4fc3f7', '#aed581', '#fff176',
-													'#ff5722', '#607d8b', '#9c27b0', '#00bcd4', '#8bc34a'
-												].map((color) => (
-													<button
-														key={color}
-														onClick={() => this.setState({ bgColor: color })}
-														className={`w-6 h-6 rounded cursor-pointer border-2 hover:scale-110 transition-transform ${this.state.bgColor === color ? 'border-gray-800 ring-1 ring-offset-1 ring-gray-400' : 'border-gray-200'}`}
-														style={{ backgroundColor: color }}
-														title={color}
-													/>
-												))}
-											</div>
+											{/* Color Presets - Toggle on click */}
+											{this.state.showColorSwatches && (
+												<div className="flex flex-wrap gap-1 m-2 p-2 bg-gray-50 rounded border animate-fade-in">
+													{[
+														'#949ee5', '#e57373', '#81c784', '#64b5f6', '#ffb74d', 
+														'#ba68c8', '#4db6ac', '#ff8a65', '#a1887f', '#90a4ae',
+														'#f06292', '#7986cb', '#4fc3f7', '#aed581', '#fff176',
+														'#ff5722', '#607d8b', '#9c27b0', '#00bcd4', '#8bc34a'
+													].map((color) => (
+														<button
+															key={color}
+															onClick={() => this.setState({ bgColor: color })}
+															className={`w-6 h-6 rounded cursor-pointer border-2 hover:scale-110 transition-transform ${this.state.bgColor === color ? 'border-gray-800 ring-1 ring-offset-1 ring-gray-400' : 'border-gray-200'}`}
+															style={{ backgroundColor: color }}
+															title={color}
+														/>
+													))}
+												</div>
+											)}
 
 
 											<div className="flex items-center">
-												{/* <div className="flex flex-col m-2 w-1/2">
+												<div className="flex flex-col m-2 w-1/2">
 													<span className="font-medium text-sm pb-1">Pattern</span>
 													<select
 														onChange={(e) => this.setState({ pattern: e.target.value })}
-														className="focus:outline-none border text-lg p-2 rounded"
+														className="focus:outline-none border text-gray-700 text-base p-2 rounded"
 														value={this.state.pattern}>
-
-														<option>none</option>
-														<option>graph-paper</option>
-														<option>jigsaw</option>
-														<option>hideout</option>
-														<option>dots</option>
-														<option>falling-triangles</option>
-														<option>circuit-board</option>
-														<option>temple</option>
-														<option>anchors</option>
-														<option>brickwall</option>
-														<option>overlapping-circles</option>
-														<option>wiggle</option>
-														<option>tic-tac-toe</option>
-														<option>leaf</option>
-														<option>bubbles</option>
-														<option>squares</option>
-														<option>explorer</option>
-														<option>jupiter</option>
-														<option>sun</option>
+														<option value="">none</option>
+														<option value="graph-paper">graph-paper</option>
+														<option value="jigsaw">jigsaw</option>
+														<option value="hideout">hideout</option>
+														<option value="dots">dots</option>
+														<option value="falling-triangles">falling-triangles</option>
+														<option value="circuit-board">circuit-board</option>
+														<option value="temple">temple</option>
+														<option value="anchors">anchors</option>
+														<option value="brickwall">brickwall</option>
+														<option value="overlapping-circles">overlapping-circles</option>
+														<option value="wiggle">wiggle</option>
+														<option value="tic-tac-toe">tic-tac-toe</option>
+														<option value="leaf">leaf</option>
+														<option value="bubbles">bubbles</option>
+														<option value="squares">squares</option>
 													</select>
-												</div> */}
+												</div>
 
-												<div className="flex flex-col m-2 w-full">
+												<div className="flex flex-col m-2 w-1/2">
 													<span className="font-medium text-sm pb-1">Platform</span>
 
 													<select
@@ -214,36 +219,36 @@ class Editor extends React.Component {
 															</option>
 														))}
 													</select>
-													
-													{this.state.platform === 'custom' && (
-														<div className="flex gap-2 mt-2">
-															<div className="flex flex-col flex-1">
-																<span className="text-xs text-gray-500">Width</span>
-																<input
-																	type="number"
-																	value={this.state.customWidth}
-																	onChange={(e) => this.setState({ customWidth: parseInt(e.target.value) || 1200 })}
-																	className="focus:outline-none border text-gray-700 text-sm rounded p-1 w-full"
-																	min="100"
-																	max="4000"
-																/>
-															</div>
-															<div className="flex flex-col flex-1">
-																<span className="text-xs text-gray-500">Height</span>
-																<input
-																	type="number"
-																	value={this.state.customHeight}
-																	onChange={(e) => this.setState({ customHeight: parseInt(e.target.value) || 630 })}
-																	className="focus:outline-none border text-gray-700 text-sm rounded p-1 w-full"
-																	min="100"
-																	max="4000"
-																/>
-															</div>
-														</div>
-													)}
 												</div>
 
 											</div>
+													
+											{this.state.platform === 'custom' && (
+												<div className="flex gap-2 m-2">
+													<div className="flex flex-col flex-1">
+														<span className="text-xs text-gray-500">Width</span>
+														<input
+															type="number"
+															value={this.state.customWidth}
+															onChange={(e) => this.setState({ customWidth: parseInt(e.target.value) || 1200 })}
+															className="focus:outline-none border text-gray-700 text-sm rounded p-1 w-full"
+															min="100"
+															max="4000"
+														/>
+													</div>
+													<div className="flex flex-col flex-1">
+														<span className="text-xs text-gray-500">Height</span>
+														<input
+															type="number"
+															value={this.state.customHeight}
+															onChange={(e) => this.setState({ customHeight: parseInt(e.target.value) || 630 })}
+															className="focus:outline-none border text-gray-700 text-sm rounded p-1 w-full"
+															min="100"
+															max="4000"
+														/>
+													</div>
+												</div>
+											)}
 
 											<button
 												className="flex items-center bg-gray-700 hover:bg-gray-800 text-white rounded-lg mt-6 text-base  p-1 px-4 mx-auto border"
