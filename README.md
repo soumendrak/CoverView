@@ -14,8 +14,7 @@ Creating cover images for your blogs is now super easy.
 
 
 
-<img src="https://gist.github.com/user-attachments/assets/1d1c1833-29bc-45d6-97dd-e26c2d1019cb
-" height="auto" width="800px"  margin="20px">
+<img src="./docs/acv-screenshot.webp" height="auto" width="800px"  margin="20px">
 
 
 
